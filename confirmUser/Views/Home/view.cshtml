@@ -1,0 +1,73 @@
+﻿@model TripViewModel
+
+<div class="container w-100 align-items-center justify-content-center min-vh-100">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h2 class="text-center mb-5">Trip Details</h2>
+            <hr />
+
+            <div class="card p-4">
+                <div class="card-body">
+                    <!-- Display fields in a row with label and value on the same line -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">User Name:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="form-control-plaintext">@Model.Name</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Trip Date:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="form-control-plaintext">@Model.TripDate</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Number of Trips:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="form-control-plaintext">@Model.TripsNum</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Number of Hours:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="form-control-plaintext">@Model.HoursNum</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Trip Distance (KM):</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="form-control-plaintext">@Model.TripDistanceKM</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Application:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="form-control-plaintext">@Model.ApplicationName</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+﻿@model ForgotPasswordModel 
+
+@{
+    ViewData["Title"] = "Verify OTP";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="VerifyOtp" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="enteredOtp">Enter OTP</label>
+        <input type="text" class="form-control" id="enteredOtp" name="enteredOtp" required />
+        @Html.ValidationMessageFor(model => model.EnteredOtp, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Verify OTP</button>
+</form>
+
+@if (ViewData.ModelState.ContainsKey(""))
+{
+    var errorMessage = ViewData.ModelState[""].Errors.FirstOrDefault()?.ErrorMessage;
+    if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger mt-3">
+            @errorMessage
+        </div>
+    }
+}

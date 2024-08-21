@@ -1,0 +1,62 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@model LoginUserFormViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "loginForm" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="vh-100 d-flex flex-column">
+        <div class="header-fixed">
+            <!-- Your fixed header content goes here -->
+        </div>
+
+        <div class="container  flex-grow-1 mt-5 justify-content-center align-items-center">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5 text-center">
+                            <div class="mb-5">
+                                <img src="~/images/logo 1.png" class="small-logo mb-3" alt="Logo" />
+                                <h5 class="fw-bold mb-0 custom-text-btn" style="color: #221d90; background-color: yellow; padding: 5px;">@localizer["LoginPrompt"]</h5>
+                                <i class="fas fa-user-astronaut fa-3x my-5"></i>
+                                @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "loginForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="username">@localizer["UserNameLabel"]</label>
+                                        <input type="text" id="username" name="Username" class="form-control form-control-lg" required />
+                                        
+                                    </div>
+                                    <div class="form-outline mb-5">
+                                        <label class="form-label" for="password">@localizer["PasswordLabel"]</label>
+                                        <input type="password" id="password" name="Password" class="form-control form-control-lg" required />
+                                       
+                                    </div>
+
+                                    <div class="text-center mb-4">
+                                        <a class="btn btn-secondary btn-lg btn-rounded custom-register-btn text-body px-5 me-2" href="@Url.Action("RegisterPage", "Home")">@localizer["RegisterButton"]</a>
+                                        <a class="text-muted" href="@Url.Action("ForgotPassword", "Home")">@localizer["ForgotPasswordLink"]</a>
+                                    </div>
+                                    <div class="d-flex justify-content-center mb-4">
+                                        <button class="btn btn-primary btn-lg btn-rounded custom-login-btn text-body px-5" type="submit">@localizer["LoginButton"]</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-fixed">
+            <!-- Your fixed footer content goes here -->
+        </div>
+    </section>
+}
+@* <link href="~/css/innerpage.css" rel="stylesheet" />
+ *@

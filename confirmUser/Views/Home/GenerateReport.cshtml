@@ -1,0 +1,103 @@
+﻿@* @model ReportModel
+
+@{
+    Layout = "~/Views/Shared/_CustomELayout.cshtml";
+    ViewData["Title"] = "Report";
+}
+
+@using (Html.BeginForm("GenerateReport", "Home", FormMethod.Get, new { id = "report" }))
+{
+    <div class="container con">
+    <h1>Report Summary</h1>
+    
+   
+    
+        <div class="report-summary">
+            <div class="report-card">
+                <h2>Summary</h2>
+                <p><strong>Sum of Trips Number:</strong> @Model.SumTripsNum</p>
+                <p><strong>Sum of Hours Number:</strong> @Model.SumHoursNum</p>
+                <p><strong>Sum of Trip Distance (KM):</strong> @Model.SumTripDistanceKM</p>
+            </div>
+
+            <div class="report-card">
+                <h2>Financials</h2>
+                <p><strong>Fees Paid to the Company:</strong> @Model.FeesPaidToTheCompany</p>
+                <p><strong>Fuel Cost:</strong> @Model.FuelCost</p>
+            </div>
+        </div>
+
+        <a href="@Url.Action("GetTrips", "Home")" class="btn-back">Back to Home</a>
+        </div>
+    }
+
+     <link href="~/css/reportstyle.css" rel="stylesheet" /> *@
+ @model ReportModel
+
+@{
+    Layout = "~/Views/Shared/_CustomELayout.cshtml";
+    ViewData["Title"] = "Generate Report";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Generate Report</h1>
+
+    @using (Html.BeginForm("GenerateReport", "Home", FormMethod.Post))
+    {
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="form-outline">
+                    <label class="form-label" for="ApplicationID">Application</label>
+                    @Html.DropDownListFor(model => model.ApplicationID, (IEnumerable<SelectListItem>)ViewBag.Applications, "Select Application", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ApplicationID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-outline">
+                    <label class="form-label" for="StartDate">Start Date</label>
+                    @Html.TextBoxFor(model => model.StartDate, @DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-outline">
+                    <label class="form-label" for="EndDate">End Date</label>
+                    @Html.TextBoxFor(model => model.EndDate, @DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Generate Report</button>
+        </div>
+    }
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Report Summary</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="report-card summary-card">
+                    <h3>Summary</h3>
+                    <p><strong>Sum of Trips Number:</strong> <span>@Model.SumTripsNum</span></p>
+                    <p><strong>Sum of Hours Number:</strong> <span>@Model.SumHoursNum</span></p>
+                    <p><strong>Sum of Trip Distance (KM):</strong> <span>@Model.SumTripDistanceKM</span></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="report-card financials-card">
+                    <h3>Financials</h3>
+                    <p><strong>Fees Paid to the Company:</strong> <span>@Model.FeesPaidToTheCompany</span></p>
+                    <p><strong>Fuel Cost:</strong> <span>@Model.FuelCost</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+
+    
+
+    <link href="~/css/reportstyle.css" rel="stylesheet" />
